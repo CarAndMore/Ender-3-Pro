@@ -1,89 +1,67 @@
-# Marlin 3D Printer Firmware
+# Marlin 2.0.9.1 – Custom Firmware für Creality Ender 3 Pro
 
-![GitHub](https://img.shields.io/github/license/marlinfirmware/marlin.svg)
-![GitHub contributors](https://img.shields.io/github/contributors/marlinfirmware/marlin.svg)
-![GitHub Release Date](https://img.shields.io/github/release-date/marlinfirmware/marlin.svg)
-[![Build Status](https://github.com/MarlinFirmware/Marlin/workflows/CI/badge.svg?branch=bugfix-2.0.x)](https://github.com/MarlinFirmware/Marlin/actions)
+Diese Repository enthält eine angepasste **Marlin 2.0.9.1** Firmware, die speziell für den **Creality Ender 3 Pro** mit dem **v4.2.2 Mainboard** optimiert wurde. 
 
-<img align="right" width=175 src="buildroot/share/pixmaps/logo/marlin-250.png" />
+Die Basis für diese Konfiguration stammt aus dem Repository von [Christopher Kurtin](https://github.com/criskurtin/Marlin).
 
-Additional documentation can be found at the [Marlin Home Page](https://marlinfw.org/).
-Please test this firmware and let us know if it misbehaves in any way. Volunteers are standing by!
+---
 
-## Marlin 2.0
+## 🛠️ Anpassungen & Features
 
-Marlin 2.0 takes this popular RepRap firmware to the next level by adding support for much faster 32-bit and ARM-based boards while improving support for 8-bit AVR boards. Read about Marlin's decision to use a "Hardware Abstraction Layer" below.
+Folgende Änderungen und Erweiterungen wurden in dieser Firmware aktiviert und konfiguriert:
 
-Download earlier versions of Marlin on the [Releases page](https://github.com/MarlinFirmware/Marlin/releases).
+*   **Creality BLTouch aktiviert:** Automatische Bettnivellierung (ABL) ist vollständig eingerichtet und einsatzbereit.
+*   **BMG Extruder-Setup:** Die Extruder-Schritte wurden standardmäßig auf **415 mm/step** für den Bondtech BMG (oder kompatible Klone) angepasst (`DEFAULT_AXIS_STEPS_PER_UNIT`).
+*   **Reduzierte Extruder-Beschleunigung:** Der Wert für `DEFAULT_MAX_ACCELERATION` des Extruders wurde auf **500** gesenkt, um das Filament-Fehlverhalten und Riemen-/Zahnradbelastungen zu minimieren.
+*   **Filament-Wechsel aktiviert:** Unterstützt den automatischen oder manuellen Filamentwechsel während des Druckvorgangs.
+*   **Advanced Pause Feature aktiviert:** Schaltet erweiterte Park- und Pausenfunktionen frei (`ADVANCED_PAUSE_FEATURE`), was unter anderem für den Filamentwechsel benötigt wird.
+*   **Host Action Commands aktiv:** Ermöglicht eine bessere Kommunikation mit Host-Systemen wie **OctoPrint** oder **Klipper/Moonraker** (z. B. Pause/Fortsetzen-Meldungen direkt vom Drucker an den Server).
+*   **Angepasste Bettgröße:** Die nutzbaren Druckbett-Dimensionen wurden präzise auf **X = 230 mm** und **Y = 220 mm** eingestellt (`X_BED_SIZE` / `Y_BED_SIZE`).
 
-## Example Configurations
+---
 
-Before building Marlin you'll need to configure it for your specific hardware. Your vendor should have already provided source code with configurations for the installed firmware, but if you ever decide to upgrade you'll need updated configuration files. Marlin users have contributed dozens of tested example configurations to get you started. Visit the [MarlinFirmware/Configurations](https://github.com/MarlinFirmware/Configurations) repository to find the right configuration for your hardware.
+## 📦 Hardware-Voraussetzungen
 
-## Building Marlin 2.0
+*   **Drucker:** Creality Ender 3 Pro
+*   **Mainboard:** Creality v4.2.2 (32-Bit Board)
+*   **Sensor:** Creality CR-Touch
+*   **Extruder:** BMG Dual-Drive Extruder (oder baugleich)
 
-To build Marlin 2.0 you'll need [Arduino IDE 1.8.8 or newer](https://www.arduino.cc/en/main/software) or [PlatformIO](http://docs.platformio.org/en/latest/ide.html#platformio-ide). Detailed build and install instructions are posted at:
+---
 
-  - [Installing Marlin (Arduino)](http://marlinfw.org/docs/basics/install_arduino.html)
-  - [Installing Marlin (VSCode)](http://marlinfw.org/docs/basics/install_platformio_vscode.html).
+## 🚀 Installation (Fertige Firmware flashen)
 
-### Supported Platforms
+Du musst die Firmware nicht selbst kompilieren. Die fertige Datei steht bereit:
 
-  Platform|MCU|Example Boards
-  --------|---|-------
-  [Arduino AVR](https://www.arduino.cc/)|ATmega|RAMPS, Melzi, RAMBo
-  [Teensy++ 2.0](http://www.microchip.com/wwwproducts/en/AT90USB1286)|AT90USB1286|Printrboard
-  [Arduino Due](https://www.arduino.cc/en/Guide/ArduinoDue)|SAM3X8E|RAMPS-FD, RADDS, RAMPS4DUE
-  [ESP32](https://github.com/espressif/arduino-esp32)|ESP32|FYSETC E4, E4d@BOX, MRR
-  [LPC1768](http://www.nxp.com/products/microcontrollers-and-processors/arm-based-processors-and-mcus/lpc-cortex-m-mcus/lpc1700-cortex-m3/512kb-flash-64kb-sram-ethernet-usb-lqfp100-package:LPC1768FBD100)|ARM® Cortex-M3|MKS SBASE, Re-ARM, Selena Compact
-  [LPC1769](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc1700-cortex-m3/512kb-flash-64kb-sram-ethernet-usb-lqfp100-package:LPC1769FBD100)|ARM® Cortex-M3|Smoothieboard, Azteeg X5 mini, TH3D EZBoard
-  [STM32F103](https://www.st.com/en/microcontrollers-microprocessors/stm32f103.html)|ARM® Cortex-M3|Malyan M200, GTM32 Pro, MKS Robin, BTT SKR Mini
-  [STM32F401](https://www.st.com/en/microcontrollers-microprocessors/stm32f401.html)|ARM® Cortex-M4|ARMED, Rumba32, SKR Pro, Lerdge, FYSETC S6
-  [STM32F7x6](https://www.st.com/en/microcontrollers-microprocessors/stm32f7x6.html)|ARM® Cortex-M7|The Borg, RemRam V1
-  [SAMD51P20A](https://www.adafruit.com/product/4064)|ARM® Cortex-M4|Adafruit Grand Central M4
-  [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)|ARM® Cortex-M4|
-  [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)|ARM® Cortex-M4|
-  [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)|ARM® Cortex-M7|
-  [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)|ARM® Cortex-M7|
-  Linux Native|x86/ARM/etc.|Raspberry Pi
+1. Gehe rechts auf der GitHub-Seite auf den Reiter **Releases**.
+2. Lade dir dort die aktuellste **`firmware.bin`** herunter.
+3. Nimm eine leere, im Format **FAT32** formatierte MicroSD-Karte.
+4. Kopiere die heruntergeladene `firmware.bin` direkt auf die Karte (in keinen Unterordner!).
+5. Schalte deinen Ender 3 Pro aus.
+6. Stecke die MicroSD-Karte in den Drucker.
+7. Schalte den Drucker ein. Der Bildschirm bleibt für einige Sekunden dunkel, während das Board die Firmware flasht. Danach startet der Drucker wie gewohnt mit der neuen Firmware.
 
-## Submitting Changes
+---
 
-- Submit **Bug Fixes** as Pull Requests to the ([bugfix-2.0.x](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x)) branch.
-- Follow the [Coding Standards](http://marlinfw.org/docs/development/coding_standards.html) to gain points with the maintainers.
-- Please submit your questions and concerns to the [Issue Queue](https://github.com/MarlinFirmware/Marlin/issues).
+## 🚀 Kompilieren und Installieren
 
-## Marlin Support
+Zum Kompilieren dieser Firmware wird **Visual Studio Code** mit der Erweiterung **PlatformIO** empfohlen.
 
-The Issue Queue is reserved for Bug Reports and Feature Requests. To get help with configuration and troubleshooting, please use the following resources:
+1. Lade dieses Repository als ZIP herunter oder klone es via Git:
+   ```bash
+   git clone https://github.com
+   ```
+2. Öffne den Ordner in VS Code.
+3. Wähle die passende Umgebung für das v4.2.2 Board aus (z. B. `STM32F103RET6_creality` oder die für deinen Chip entsprechende Umgebung).
+4. Klicke auf **Build**, um die `firmware.bin` zu erstellen.
+5. Kopiere die generierte `firmware.bin` auf eine leere, FAT32-formatierte MicroSD-Karte.
+6. Stecke die Karte in den ausgeschalteten Drucker und schalte ihn ein. Der Flash-Vorgang startet automatisch.
 
-- [Marlin Documentation](http://marlinfw.org) - Official Marlin documentation
-- [Marlin Discord](https://discord.gg/n5NJ59y) - Discuss issues with Marlin users and developers
-- Facebook Group ["Marlin Firmware"](https://www.facebook.com/groups/1049718498464482/)
-- RepRap.org [Marlin Forum](http://forums.reprap.org/list.php?415)
-- Facebook Group ["Marlin Firmware for 3D Printers"](https://www.facebook.com/groups/3Dtechtalk/)
-- [Marlin Configuration](https://www.youtube.com/results?search_query=marlin+configuration) on YouTube
+---
 
-## Contributors
+## 📜 Credits
+*   Original Marlin-Projekt: [MarlinFirmware](https://github.com)
+*   Basis-Konfiguration: [criskurtin/Marlin](https://github.com/criskurtin/Marlin)
 
-Marlin is constantly improving thanks to a huge number of contributors from all over the world bringing their specialties and talents. Huge thanks are due to [all the contributors](https://github.com/MarlinFirmware/Marlin/graphs/contributors) who regularly patch up bugs, help direct traffic, and basically keep Marlin from falling apart. Marlin's continued existence would not be possible without them.
-
-## Administration
-
-Regular users can open and close their own issues, but only the administrators can do project-related things like add labels, merge changes, set milestones, and kick trolls. The current Marlin admin team consists of:
-
- - Scott Lahteine [[@thinkyhead](https://github.com/thinkyhead)] - USA - Project Maintainer &nbsp; [![Donate](https://api.flattr.com/button/flattr-badge-large.png)](http://www.thinkyhead.com/donate-to-marlin)
- - Roxanne Neufeld [[@Roxy-3D](https://github.com/Roxy-3D)] - USA
- - Keith Bennett [[@thisiskeithb](https://github.com/thisiskeithb)] - USA
- - Victor Oliveira [[@rhapsodyv](https://github.com/rhapsodyv)] - Brazil
- - Chris Pepper [[@p3p](https://github.com/p3p)] - UK
- - Jason Smith [[@sjasonsmith](https://github.com/sjasonsmith)] - USA
- - Luu Lac [[@shitcreek](https://github.com/shitcreek)] - USA
- - Bob Kuhn [[@Bob-the-Kuhn](https://github.com/Bob-the-Kuhn)] - USA
- - Erik van der Zalm [[@ErikZalm](https://github.com/ErikZalm)] - Netherlands &nbsp; [![Flattr Erik](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=ErikZalm&url=https://github.com/MarlinFirmware/Marlin&title=Marlin&language=&tags=github&category=software)
-
-## License
-
-Marlin is published under the [GPL license](/LICENSE) because we believe in open development. The GPL comes with both rights and obligations. Whether you use Marlin firmware as the driver for your open or closed-source product, you must keep Marlin open, and you must provide your compatible Marlin source code to end users upon request. The most straightforward way to comply with the Marlin license is to make a fork of Marlin on Github, perform your modifications, and direct users to your modified fork.
-
-While we can't prevent the use of this code in products (3D printers, CNC, etc.) that are closed source or crippled by a patent, we would prefer that you choose another firmware or, better yet, make your own.
+---
+*Hinweis: Die Nutzung dieser Firmware erfolgt auf eigene Gefahr. Bitte überprüfe vor dem ersten Homing die Achsenrichtungen und den Abstand des BLTouch-Sensors zur Düse (Z-Offset).*

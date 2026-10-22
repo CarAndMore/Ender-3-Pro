@@ -23,7 +23,7 @@ Folgende Änderungen und Erweiterungen wurden in dieser Firmware aktiviert und k
 ## 📦 Hardware-Voraussetzungen
 
 *   **Drucker:** Creality Ender 3 Pro
-*   **Mainboard:** Creality v4.2.2 (32-Bit Board)
+*   **Mainboard:** Creality v4.2.2 (GD32F303)
 *   **Sensor:** Creality CR-Touch
 *   **Extruder:** BMG Dual-Drive Extruder (oder baugleich)
 

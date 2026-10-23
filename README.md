@@ -120,7 +120,8 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 | Autotuning Heizbett 70 °C (S70) | `M303 E-1 S70 C8 U1` |
 | Autotuning Hotend 200 °C (S200) | `M303 E0 S200 C8 U1` |
 
-Hinweis: Nach einem erfolgreichen PID-Autotuning die neuen Werte mit M500 dauerhaft speichern.
+- Hinweis: Nach einem erfolgreichen PID-Autotuning die neuen Werte mit M500 dauerhaft speichern.
+
 ---
 
 ## 📋 Wichtige Firmware-Werte

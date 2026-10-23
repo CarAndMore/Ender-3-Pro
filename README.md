@@ -47,10 +47,7 @@ Du musst die Firmware nicht selbst kompilieren. Die fertige Datei steht bereit:
 
 Zum Kompilieren dieser Firmware wird **Visual Studio Code** mit den Erweiterungen **PlatformIO** und **Auto Build Marlin** empfohlen.
 
-1. Lade dieses Repository als ZIP herunter oder klone es via Git:
-   ```bash
-   git clone https://github.com
-   ```
+1. Lade dieses Repository als ZIP herunter oder klone es via Git.
 2. Öffne den heruntergeladenen Projektordner in **VS Code**. Stellen sicher, dass die Plugins *PlatformIO* und *Auto Build Marlin* aktiv sind.
 3. Nimm deine gewünschten Anpassungen in den Dateien `Configuration.h` und `Configuration_adv.h` vor.
 4. Klicke im *Auto Build Marlin*-Plugin (oder in PlatformIO) auf **Build**, um die Firmware zu erstellen.

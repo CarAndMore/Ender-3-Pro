@@ -137,6 +137,8 @@ M500
 | Filament entladen | `M702` |
 | Druck pausieren und Druckkopf parken | `M125` |
 | Pause abbrechen / fortsetzen | `M108` |
+| Aktuelle Einstellungen ausgeben | `M503` |
+| Einstellungen speichern | `M500` |
 
 ---
 

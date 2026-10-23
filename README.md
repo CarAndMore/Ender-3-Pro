@@ -60,7 +60,13 @@ Zum Kompilieren dieser Firmware wird **Visual Studio Code** mit den Erweiterunge
 11. **Z-OFFSET EINSTELLEN:** Führe am Drucker zuerst ein Homing (**Auto Home**) durch. Stelle danach deinen individuellen Düsenabstand im Display unter **Configuration** -> **Probe Z-Offset** ein und klicke anschließend erneut auf **Store Settings**, um den Wert dauerhaft im EEPROM zu sichern.
 
 ---
+## Tip
+Autotune befehle dauer ca. 5-15 Minuten.
+*   Hotend: M303 E0 S200 C8 U1   
+*   Heizbett: M303 E-1 S70 C8 U1
+*   danach mit M500 Werte dauerhaft sichern:
 
+---
 ## 📜 Credits
 *   Original Marlin-Projekt: [MarlinFirmware](https://github.com)
 *   Basis-Konfiguration: [criskurtin/Marlin](https://github.com/criskurtin/Marlin)

@@ -106,32 +106,10 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 
 ## 💡 Nützliche G-Code-Befehle
 
-### PID-Autotuning
-
-#### Hotend (200 °C)
-
-```gcode
-M303 E0 S200 C8 U1
-```
-
-#### Heizbett (70 °C)
-
-```gcode
-M303 E-1 S70 C8 U1
-```
-
-Anschließend die ermittelten Werte dauerhaft speichern:
-
-```gcode
-M500
-```
-
----
-
-## 🎛️ Advanced Pause Feature
-
 | Funktion | G-Code |
 |-----------|---------|
+| Auto Home | `G28` |
+| Automatische Bettnivellierung (ABL) | `G29` |
 | Filamentwechsel | `M600` |
 | Filament laden | `M701` |
 | Filament entladen | `M702` |
@@ -139,7 +117,10 @@ M500
 | Pause abbrechen / fortsetzen | `M108` |
 | Aktuelle Einstellungen ausgeben | `M503` |
 | Einstellungen speichern | `M500` |
+| Autotuning Heizbett 70 °C (S70) | `M303 E-1 S70 C8 U1` |
+| Autotuning Hotend 200 °C (S200) | `M303 E0 S200 C8 U1` |
 
+Hinweis: Nach einem erfolgreichen PID-Autotuning die neuen Werte mit M500 dauerhaft speichern.
 ---
 
 ## 📋 Wichtige Firmware-Werte

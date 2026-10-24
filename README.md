@@ -193,10 +193,19 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 | Druckbett Y | 220 mm |
 | Extruder Steps/mm | 415 |
 | Extruder Max Acceleration | 500 mm/s² |
-| Auto Bed Leveling | Aktiv |
+| Auto Bed Leveling (BLTouch / CR-Touch) | Aktiv |
+| Assisted Tramming Wizard | Aktiv |
+| Linear Advance | Aktiv |
 | Advanced Pause | Aktiv |
 | Host Action Commands | Aktiv |
 | PID Autotune | Aktiv |
+| Fortschrittsbalken | Aktiv |
+| Restzeitanzeige | Aktiv |
+| Filamentwechsel (M600) | Aktiv |
+| LCD-Menü Filament laden / entladen | Aktiv |
+| Vorheizprofil ABS | Durch PETG ersetzt |
+| Vorheizprofil PLA | 195 °C / 60 °C |
+| Vorheizprofil PETG | 220 °C / 75 °C |
 
 ---
 

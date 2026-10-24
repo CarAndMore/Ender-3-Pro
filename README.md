@@ -10,30 +10,61 @@ Die ursprüngliche Basis dieser Konfiguration stammt aus dem Repository von [Chr
 
 Folgende Funktionen und Optimierungen sind bereits aktiviert bzw. vorkonfiguriert:
 
+
 ### ✅ CR-Touch / BLTouch aktiviert
 Automatische Bettnivellierung (ABL) ist vollständig eingerichtet und einsatzbereit.
+
+<br>
+
+### ✅ Bett-Schrauben-Assistent aktiviert
+Der **ASSISTED_TRAMMING_WIZARD** unterstützt das manuelle Ausrichten des Druckbetts. In Verbindung mit dem BLTouch werden die Positionen über den Bettschrauben automatisch angefahren und vermessen. Der Assistent zeigt anschließend die notwendigen Korrekturen zum exakten Trammen des Druckbetts an.
+
+<br>
 
 ### ✅ BMG-Extruder vorkonfiguriert
 Die Extruder-Schritte wurden auf **415 Steps/mm** angepasst (`DEFAULT_AXIS_STEPS_PER_UNIT`) und sind für Bondtech BMG Extruder sowie kompatible Klone ausgelegt.
 
+<br>
+
+### ✅ Linear Advance aktiviert
+**Linear Advance** (`LIN_ADVANCE`) ist aktiviert und kann bequem über den G-Code `M900` konfiguriert werden. Dadurch wird der Materialfluss insbesondere bei Beschleunigungs- und Richtungswechseln deutlich präziser geregelt.
+
+<br>
+
 ### ✅ Reduzierte Extruder-Beschleunigung
 Die maximale Extruder-Beschleunigung wurde auf **500 mm/s²** reduziert, um unnötige Belastungen von Filament, Extruder und Zahnradmechanik zu vermeiden.
 
+<br>
+
 ### ✅ Filamentwechsel aktiviert
-Unterstützung für automatischen und manuellen Filamentwechsel während des Drucks.
+Unterstützung für automatischen und manuellen Filamentwechsel während des Drucks oder direkt über das LCD-Menü im Idle-Betrieb.
+
+<br>
 
 ### ✅ PID-Autotuning aktiviert
-PID-Werte für Hotend und Heizbett können direkt per G-Code neu eingemessen werden.
+PID-Werte für Hotend und Heizbett können direkt per G-Code oder im LCD-Menü neu eingemessen werden.
+
+<br>
 
 ### ✅ Advanced Pause Feature aktiviert
 Erweiterte Pausen-, Park- und Filamentwechsel-Funktionen (`ADVANCED_PAUSE_FEATURE`) sind aktiviert.
 
+<br>
+
 ### ✅ Host Action Commands aktiviert
 Verbesserte Kommunikation mit Host-Systemen wie **OctoPrint**. Unterstützt Status-, Pausen- und Fortsetzen-Meldungen direkt vom Drucker an den Host.
+
+<br>
+
+### ✅ Restzeitanzeige & Fortschrittsbalken aktiviert
+Die LCD-Anzeige zeigt während des Drucks einen Fortschrittsbalken sowie die verbleibende Druckzeit an. Dadurch lässt sich der aktuelle Druckfortschritt jederzeit direkt am Drucker überwachen.
+
+<br>
 
 ### ✅ Angepasste Druckbettgröße
 Die nutzbare Druckfläche wurde auf **230 × 220 mm** eingestellt.
 
+<br>
 ---
 
 ## 📦 Hardware-Voraussetzungen
@@ -136,7 +167,9 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 | EEPROM prüfen | `M504` | `M504` | Prüft das EEPROM auf Erreichbarkeit und korrekte Prüfsumme. |
 
 
-- Hinweis: Nach einem erfolgreichen PID-Autotuning die neuen Werte mit M500 dauerhaft speichern.
+- Nach Änderungen an M92, M851, M900 oder PID-Werten immer mit M500 speichern.
+- Anschließend mit M503 kontrollieren, ob die Werte korrekt übernommen wurden.
+- Nach M502 sind die Firmware-Standardwerte nur im RAM geladen. Erst M500 schreibt sie dauerhaft ins EEPROM.
 
 ---
 

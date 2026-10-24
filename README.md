@@ -61,6 +61,18 @@ Die LCD-Anzeige zeigt während des Drucks einen Fortschrittsbalken sowie die ver
 
 <br>
 
+### ✅ Optimierte Vorheizprofile
+Der veraltete Vorheiz-Eintrag **ABS** wurde durch **PETG** ersetzt.
+
+Vorkonfigurierte Temperaturen:
+
+| Material | Düse | Heizbett |
+|-----------|-----------|-----------|
+| PLA | 195°C | 60°C |
+| PETG | 220°C | 75°C |
+
+<br>
+
 ### ✅ Angepasste Druckbettgröße
 Die nutzbare Druckfläche wurde auf **230 × 220 mm** eingestellt.
 

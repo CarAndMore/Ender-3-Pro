@@ -76,7 +76,6 @@ Vorkonfigurierte Temperaturen:
 ### ✅ Angepasste Druckbettgröße
 Die nutzbare Druckfläche wurde auf **230 × 220 mm** eingestellt.
 
-<br>
 ---
 
 ## 📦 Hardware-Voraussetzungen

@@ -106,19 +106,35 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 
 ## 💡 Nützliche G-Code-Befehle
 
-| Funktion | G-Code |
-|-----------|---------|
-| Auto Home | `G28` |
-| Automatische Bettnivellierung (ABL) | `G29` |
-| Filamentwechsel | `M600` |
-| Filament laden | `M701` |
-| Filament entladen | `M702` |
-| Druck pausieren und Druckkopf parken | `M125` |
-| Pause abbrechen / fortsetzen | `M108` |
-| Aktuelle Einstellungen ausgeben | `M503` |
-| Einstellungen speichern | `M500` |
-| Autotuning Heizbett 70 °C (S70) | `M303 E-1 S70 C8 U1` |
-| Autotuning Hotend 200 °C (S200) | `M303 E0 S200 C8 U1` |
+|> Die folgenden Befehle können über OctoPrint, Pronterface, Repetier-Host oder ein anderes Terminal direkt an den Drucker gesendet werden.
+
+| Funktion | Befehl | Beispiel | Beschreibung |
+|-----------|---------|---------|---------|
+| Auto Home | `G28` | `G28` | Fährt alle Achsen (X, Y, Z) an ihre Endstopps und setzt die aktuelle Position als Referenz. |
+| Automatische Bettnivellierung (ABL) | `G29` | `G29` | Startet das automatische Bed-Leveling mittels BLTouch/CR-Touch. |
+| Bett-Schrauben-Assistent (Bed Tramming) | `G35` | `G35` | Vermisst die Positionen über den Bettschrauben und zeigt an, welche Schraube wie weit gedreht werden muss. |
+| Düsentemperatur setzen | `M104` | `M104 S200` | Heizt die Düse auf 200 °C, ohne auf das Erreichen der Temperatur zu warten. |
+| Düsentemperatur setzen und warten | `M109` | `M109 S200` | Heizt die Düse auf 200 °C und wartet, bis die Zieltemperatur erreicht ist. |
+| Betttemperatur setzen | `M140` | `M140 S60` | Heizt das Druckbett auf 60 °C, ohne zu warten. |
+| Betttemperatur setzen und warten | `M190` | `M190 S60` | Heizt das Druckbett auf 60 °C und wartet auf die Zieltemperatur. |
+| Bauteillüfter einschalten | `M106` | `M106 S255` | Schaltet den Bauteillüfter ein. Wertebereich: 0–255. |
+| Bauteillüfter ausschalten | `M107` | `M107` | Schaltet den Bauteillüfter vollständig aus. |
+| Filamentwechsel | `M600` | `M600` | Pausiert den Druck und startet den Filamentwechsel-Assistenten. |
+| Filament laden | `M701` | `M701` | Lädt Filament automatisch in den Extruder. |
+| Filament entladen | `M702` | `M702` | Entlädt Filament automatisch aus dem Extruder. |
+| Druck pausieren und parken | `M125` | `M125` | Pausiert den Druck und fährt den Druckkopf in eine Parkposition. |
+| Pause fortsetzen | `M108` | `M108` | Bricht bestimmte Wartezustände ab bzw. setzt pausierte Vorgänge fort. |
+| Steps/mm einstellen | `M92` | `M92 E415.0` | Setzt die Schritte pro Millimeter für Achsen oder Extruder. |
+| Z-Offset einstellen | `M851` | `M851 Z-1.45` | Legt den Abstand zwischen Düse und Z-Sonde fest. |
+| Linear Advance K-Faktor | `M900` | `M900 K0.22` | Setzt den Linear-Advance-Wert für einen präziseren Materialfluss. Mit `M900` ohne Parameter wird der aktuelle Wert angezeigt. |
+| PID-Autotune Hotend | `M303` | `M303 E0 S200 C8 U1` | Führt eine automatische PID-Kalibrierung des Hotends bei 200 °C durch. |
+| PID-Autotune Heizbett | `M303` | `M303 E-1 S70 C8 U1` | Führt eine automatische PID-Kalibrierung des Heizbetts bei 70 °C durch. |
+| Einstellungen speichern | `M500` | `M500` | Speichert alle aktuellen Einstellungen dauerhaft im EEPROM. |
+| Einstellungen laden | `M501` | `M501` | Lädt die gespeicherten EEPROM-Werte in den RAM. |
+| Werkseinstellungen laden | `M502` | `M502` | Lädt die Standardwerte aus der Firmware in den RAM. Danach mit `M500` speichern, falls dauerhaft gewünscht. |
+| Einstellungen anzeigen | `M503` | `M503` | Gibt alle aktuell aktiven Einstellungen im Terminal aus. |
+| EEPROM prüfen | `M504` | `M504` | Prüft das EEPROM auf Erreichbarkeit und korrekte Prüfsumme. |
+
 
 - Hinweis: Nach einem erfolgreichen PID-Autotuning die neuen Werte mit M500 dauerhaft speichern.
 

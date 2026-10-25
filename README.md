@@ -192,7 +192,7 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 
 ---
 
-## 📋 Wichtige Firmware-Werte
+## 📋 Wichtige Firmware-Änderungen
 
 | Einstellung | Wert |
 |------------|------|
@@ -201,6 +201,10 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 | Extruder Steps/mm | 415 |
 | Extruder Max Acceleration | 500 mm/s² |
 | Auto Bed Leveling (BLTouch / CR-Touch) | Aktiv |
+| Sensor-Versatz (X, Y) | X: -43, Y: -9 |
+| Z Endstopp | Deaktiv |
+| Z Safe Homing | Aktiv |
+| Leveling-Messraster | 5 x 5 (25 Punkte) | 
 | Assisted Tramming Wizard | Aktiv |
 | Linear Advance | Aktiv |
 | Advanced Pause | Aktiv |

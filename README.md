@@ -2,7 +2,7 @@
 
  🇩🇪 **Dies ist die deutsche Dokumentation.** 
  
- 🇬🇧 👉 For the English version, please view the [README_EN.md](.github/gREADME_EN.md).
+ 🇬🇧 👉 For the English version, please view the [README_EN.md](.github/README_EN.md).
  
 Dieses Repository enthält eine angepasste **Marlin 2.0.9.1** Firmware für den **Creality Ender 3 Pro** mit **v4.2.2 Mainboard (GD32F303-RET6)**, CR-Touch und BMG-Extruder.
 

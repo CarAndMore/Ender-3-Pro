@@ -4,6 +4,11 @@ Dieses Repository enthält eine angepasste **Marlin 2.0.9.1** Firmware für den 
 
 Die ursprüngliche Basis dieser Konfiguration stammt aus dem Repository von [Christopher Kurtin](https://github.com/criskurtin/Marlin).
 
+ 🇩🇪 **Dies ist die deutsche Dokumentation.** 
+ 🇬🇧 👉 For the English version, please view the [README_EN.md](README_EN.md).
+
+![Creality V4.2.2 Mainboard](.github/img/mainboard.png)
+
 ---
 
 ## 🛠️ Anpassungen & Features

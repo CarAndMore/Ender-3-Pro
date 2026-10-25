@@ -8,7 +8,7 @@ This repository contains a customized **Marlin 2.0.9.1** firmware for the **Crea
 
 The original foundation of this configuration comes from the repository by [Christopher Kurtin](https://github.com).
 
-
+<img src="img/mainboard.png" width="45%" alt="Creality V4.2.2 Mainboard" />
 ---
 
 ## 🛠️ Customizations & Features

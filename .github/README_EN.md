@@ -1,6 +1,6 @@
 # Marlin 2.0.9.1 – Custom Firmware for the Creality Ender 3 Pro
 
- 🇩🇪 👉 Für die deutsche Version, bitte die [README.md](README.md) anzeigen.
+ 🇩🇪 👉 Für die deutsche Version, bitte die [README.md](../README.md) anzeigen.
  
  🇬🇧 **This is the English documentation.**
  

@@ -1,13 +1,15 @@
 # Marlin 2.0.9.1 – Custom Firmware für den Creality Ender 3 Pro
 
+ 🇩🇪 **Dies ist die deutsche Dokumentation.** 
+ 
+ 🇬🇧 👉 For the English version, please view the [README_EN.md](README_EN.md).
+ 
 Dieses Repository enthält eine angepasste **Marlin 2.0.9.1** Firmware für den **Creality Ender 3 Pro** mit **v4.2.2 Mainboard (GD32F303-RET6)**, CR-Touch und BMG-Extruder.
 
 Die ursprüngliche Basis dieser Konfiguration stammt aus dem Repository von [Christopher Kurtin](https://github.com/criskurtin/Marlin).
 
- 🇩🇪 **Dies ist die deutsche Dokumentation.** 
- 🇬🇧 👉 For the English version, please view the [README_EN.md](README_EN.md).
 
-![Creality V4.2.2 Mainboard](.github/img/mainboard.png)
+<img src=".github/img/mainboard.png" width="45%" alt="Creality V4.2.2 Mainboard" />
 
 ---
 

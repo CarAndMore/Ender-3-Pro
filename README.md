@@ -96,6 +96,26 @@ Die nutzbare Druckfläche wurde auf **230 × 220 mm** eingestellt.
 
 ---
 
+## 📦 Meine OctoPrint – Plugin-Liste
+
+ - Bed Visualizer
+ - Classic Webcam
+ - Custom Control Manager
+ - Druckerbenachrichtigungen
+ - Exclude Region
+ - File Check
+ - Firmware Check
+ - MultiCam
+ - Octolapse
+ - PrintTimeGenius
+ - Printerdialoge
+ - Slicer Thumbnails
+ - Tuya Smartplug
+ - UI Customizer
+
+---
+
+
 ## 🚀 Installation (Fertige Firmware flashen)
 
 Eine eigene Kompilierung ist nicht notwendig.

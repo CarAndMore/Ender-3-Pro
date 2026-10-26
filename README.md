@@ -190,9 +190,11 @@ Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Onli
 
 👉 **Zum interaktiven** [Skew-Faktor-Rechner](https://carandmore.github.io/Ender-3-Pro/xy_calc.html).
 ### Kurzanleitung:
+1. **Wichtig vor dem Druck:** Falls bereits ein Faktor aktiv ist, setze ihn im Terminal mit `M852 I0` zurück, damit der Testdruck die reine mechanische Realität zeigt.
 1. Drucke ein Testquadrat und miss die Diagonalen (**AC** und **BD**) sowie die Unterkante (**AD**).
-2. Trage die Werte in den Rechner ein und klicke auf **Faktor berechnen**.
-3. Sende den ermittelten Wert einfach per G-Code-Terminal (z. B. in OctoPrint oder Pronterface) an deinen Drucker:
+   z.b. [XY Skew Calibration Print](https://www.printables.com/model/535224-ultra-fast-printing-easy-measure-xy-skew-calibrati/files) von Maker64
+3. Trage die Werte in den Rechner ein und klicke auf **Faktor berechnen**.
+4. Sende den ermittelten Wert einfach per G-Code-Terminal (z. B. in OctoPrint oder Pronterface) an deinen Drucker:
    ```gcode
    M852 I[DEIN_BERECHNETER_WERT] ; z.b. M852 I0.000165
    M500 ; Einstellungen dauerhaft im EEPROM speichern

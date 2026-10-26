@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XY Skew Factor Calculator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background-color: #f6f8fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 24px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #hsla(210,18%,87%,1);
+            padding-bottom: 8px;
+        }
+        p {
+            font-size: 14px;
+            color: #57606a;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #24292f;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            box-sizing: border-box;
+            box-shadow: inset 0 1px 0 rgba(208,215,222,0.2);
+        }
+        input[type="number"]:focus {
+            border-color: #0969da;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(9,105,218,0.3);
+        }
+        button {
+            width: 100%;
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            color: #ffffff;
+            background-color: #1f883d;
+            border: 1px solid rgba(31,136,61,0.15);
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #1a7f37;
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 16px;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            display: none;
+        }
+        .result-box.active {
+            display: block;
+        }
+        .result-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .result-value {
+            font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Liberation Mono, Menlo, Monaco, Consolas, monospace;
+            font-size: 16px;
+            background: #ffffff;
+            padding: 8px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            color: #0969da;
+            font-weight: bold;
+        }
+        .error {
+            color: #cf222e;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>XY Skew Factor Rechner</h1>
+    <p>Geben Sie Ihre Messwerte in mm ein, um den <code>XY_SKEW_FACTOR</code> für Ihre Firmware zu berechnen.</p>
+    
+    <div class="input-group">
+        <label for="ac">Diagonale A nach C (AC)</label>
+        <input type="number" id="ac" step="any" placeholder="z.B. 141.42">
+    </div>
+    
+    <div class="input-group">
+        <label for="bd">Diagonale B nach D (BD)</label>
+        <input type="number" id="bd" step="any" placeholder="z.B. 141.42">
+    </div>
+    
+    <div class="input-group">
+        <label for="ad">Unterkante A nach D (AD)</label>
+        <input type="number" id="ad" step="any" placeholder="z.B. 100.00">
+    </div>
+    
+    <button onclick="calculateSkew()">Faktor berechnen</button>
+    <div id="error-msg" class="error">Bitte überprüfen Sie Ihre Werte. Die mathematische Berechnung schlägt fehl (unmögliche Geometrie).</div>
+
+    <div class="result-box" id="result-container">
+        <div class="result-title">Berechneter XY_SKEW_FACTOR:</div>
+        <div class="result-value" id="result-val">0.000000</div>
+    </div>
+</div>
+
+<script>
+function calculateSkew() {
+    const ac = parseFloat(document.getElementById('ac').value);
+    const bd = parseFloat(document.getElementById('bd').value);
+    const ad = parseFloat(document.getElementById('ad').value);
+    const errorMsg = document.getElementById('error-msg');
+    const resultContainer = document.getElementById('result-container');
+    const resultVal = document.getElementById('result-val');
+
+    errorMsg.style.display = 'none';
+    resultContainer.classList.remove('active');
+
+    if (isNaN(ac) || isNaN(bd) || isNaN(ad) || ac <= 0 || bd <= 0 || ad <= 0) {
+        errorMsg.textContent = "Bitte füllen Sie alle Felder mit gültigen Zahlen aus.";
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    try {
+        // Formel 1: AB berechnen
+        // AB = SQRT(2*AC*AC + 2*BD*BD - 4*AD*AD) / 2
+        const ab_squared = (2 * ac * ac + 2 * bd * bd - 4 * ad * ad) / 4;
+        if (ab_squared <= 0) throw new Error();
+        const ab = Math.sqrt(ab_squared);
+
+        // Formel 2: Winkel-Kosinus berechnen (Kosinussatz für das Dreieck)
+        // cos_A = (AC*AC - AB*AB - AD*AD) / (2 * AB * AD)
+        const cos_A = (ac * ac - ab * ab - ad * ad) / (2 * ab * ad);
+        if (cos_A < -1 || cos_A > 1) throw new Error();
+
+        // Winkel in Bogenmaß (Radiant)
+        const angle_A = Math.acos(cos_A);
+
+        // Formel 3: TAN(PI/2 - angle_A)
+        const skew_factor = Math.tan((Math.PI / 2) - angle_A);
+
+        if (isNaN(skew_factor) || !isFinite(skew_factor)) throw new Error();
+
+        resultVal.textContent = skew_factor.toFixed(6);
+        resultContainer.classList.add('active');
+    } catch (e) {
+        errorMsg.textContent = "Mathematischer Fehler: Diese Werte ergeben kein echtes Parallelogramm.";
+        errorMsg.style.display = 'block';
+    }
+}
+</script>
+
+</body>
+</html>

@@ -54,6 +54,11 @@ PID-Werte für Hotend und Heizbett können direkt per G-Code oder im LCD-Menü n
 
 <br>
 
+### ✅ SKEW_CORRECTION (Rechtwinkligkeits-Korrektur) aktiviert
+Korrektur X- und Y-Achse um einem perfekten 90°-Winkel zu ereichen.
+
+<br>
+
 ### ✅ Advanced Pause Feature aktiviert
 Erweiterte Pausen-, Park- und Filamentwechsel-Funktionen (`ADVANCED_PAUSE_FEATURE`) sind aktiviert.
 
@@ -78,11 +83,6 @@ Vorkonfigurierte Temperaturen:
 |-----------|-----------|-----------|
 | PLA | 195°C | 60°C |
 | PETG | 220°C | 75°C |
-
-<br>
-
-### ✅ Angepasste Druckbettgröße
-Die nutzbare Druckfläche wurde auf **230 × 220 mm** eingestellt.
 
 ---
 
@@ -197,6 +197,7 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 | Pause fortsetzen | `M108` | `M108` | Bricht bestimmte Wartezustände ab bzw. setzt pausierte Vorgänge fort. |
 | Steps/mm einstellen | `M92` | `M92 E415.0` | Setzt die Schritte pro Millimeter für Achsen oder Extruder. |
 | Z-Offset einstellen | `M851` | `M851 Z-1.45` | Legt den Abstand zwischen Düse und Z-Sonde fest. |
+| Skew Correction | `M852` | `M852 I0.000165` | Korrektur der Rechtswirklichkeit (X,Y). |
 | Linear Advance K-Faktor | `M900` | `M900 K0.22` | Setzt den Linear-Advance-Wert für einen präziseren Materialfluss. Mit `M900` ohne Parameter wird der aktuelle Wert angezeigt. |
 | PID-Autotune Hotend | `M303` | `M303 E0 S200 C8 U1` | Führt eine automatische PID-Kalibrierung des Hotends bei 200 °C durch. |
 | PID-Autotune Heizbett | `M303` | `M303 E-1 S70 C8 U1` | Führt eine automatische PID-Kalibrierung des Heizbetts bei 70 °C durch. |
@@ -207,7 +208,7 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 | EEPROM prüfen | `M504` | `M504` | Prüft das EEPROM auf Erreichbarkeit und korrekte Prüfsumme. |
 
 
-- Nach Änderungen an M92, M851, M900 oder PID-Werten immer mit M500 speichern.
+- Nach Änderungen an M92, M851, M852, M900 oder PID-Werten immer mit M500 speichern.
 - Anschließend mit M503 kontrollieren, ob die Werte korrekt übernommen wurden.
 - Nach M502 sind die Firmware-Standardwerte nur im RAM geladen. Erst M500 schreibt sie dauerhaft ins EEPROM.
 
@@ -217,24 +218,23 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 
 | Einstellung | Wert |
 |------------|------|
-| Druckbett X | 230 mm |
-| Druckbett Y | 220 mm |
 | Extruder Steps/mm | 415 |
 | Extruder Max Acceleration | 500 mm/s² |
 | Auto Bed Leveling (BLTouch / CR-Touch) | Aktiv |
 | Sensor-Versatz (X, Y) | X: -43, Y: -9 |
-| Z Endstopp | Deaktiv |
-| Z Safe Homing | Aktiv |
+| Z Endstopp | Deaktivirt |
+| Z Safe Homing | Aktivirt |
 | Leveling-Messraster | 5 x 5 (25 Punkte) | 
-| Assisted Tramming Wizard | Aktiv |
-| Linear Advance | Aktiv |
-| Advanced Pause | Aktiv |
-| Host Action Commands | Aktiv |
-| PID Autotune | Aktiv |
-| Fortschrittsbalken | Aktiv |
-| Restzeitanzeige | Aktiv |
-| Filamentwechsel (M600) | Aktiv |
-| LCD-Menü Filament laden / entladen | Aktiv |
+| Assisted Tramming Wizard | Aktivirt |
+| Linear Advance | Aktivirt |
+| Advanced Pause | Aktivirt |
+| Host Action Commands | Aktivirt |
+| PID Autotune | Aktivirt |
+| Skew Correction | Aktivirt |
+| Fortschrittsbalken | Aktivirt |
+| Restzeitanzeige | Aktivirt |
+| Filamentwechsel (M600) | Aktivirt |
+| LCD-Menü Filament laden / entladen | Aktivirt |
 | Vorheizprofil ABS | Durch PETG ersetzt |
 | Vorheizprofil PLA | 195 °C / 60 °C |
 | Vorheizprofil PETG | 220 °C / 75 °C |

@@ -175,6 +175,30 @@ Dadurch werden die in der Firmware hinterlegten Standardwerte übernommen.
 
 ---
 
+## 📐 Achsen-Rechtwinkligkeit & Skew-Kompensation
+
+Falls die X- und Y-Achse deines Druckers nicht perfekt im 90°-Winkel zueinander stehen, führt das zu verzerrten (parallelogrammförmigen) Drucken. Um das nicht mühsam mechanisch auszurichten, kannst du den Schiefstand über die Firmware korrigieren.
+
+Marlin berechnet den Faktor im Hintergrund nach dieser mathematischen Formel:
+
+```text
+Compute_AB = SQRT( 2 * AC * AC + 2 * BD * BD - 4 * AD * AD ) / 2
+XY_SKEW_FACTOR : TAN( PI / 2 - ACOS (( AC * AC - AB * AB - AD * AD ) / (2 * AB * AD )))
+```
+
+Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Online-Rechner:
+
+👉 **Zum interaktiven** [Skew-Faktor-Rechner](https://carandmore.github.io/Ender-3-Pro/index.html).
+### Kurzanleitung:
+1. Drucke ein Testquadrat und miss die Diagonalen (**AC** und **BD**) sowie die Unterkante (**AD**).
+2. Trage die Werte in den Rechner ein und klicke auf **Faktor berechnen**.
+3. Sende den ermittelten Wert einfach per G-Code-Terminal (z. B. in OctoPrint oder Pronterface) an deinen Drucker:
+   ```gcode
+   M852 I[DEIN_BERECHNETER_WERT] ; z.b. M852 I0.000165
+   M500 ; Einstellungen dauerhaft im EEPROM speichern
+   ```
+---
+
 ## 💡 Nützliche G-Code-Befehle
 
 |> Die folgenden Befehle können über OctoPrint, Pronterface, Repetier-Host oder ein anderes Terminal direkt an den Drucker gesendet werden.

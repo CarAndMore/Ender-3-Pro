@@ -6,14 +6,16 @@
     <title>XY Skew Factor Calculator</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #24292f;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             background-color: #f6f8fa;
+            color: #24292f;
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
         .container {
             background: #ffffff;
@@ -22,14 +24,13 @@
             padding: 24px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         h1 {
             font-size: 20px;
-            font-weight: 600;
             margin-top: 0;
             margin-bottom: 8px;
-            border-bottom: 1px solid #hsla(210,18%,87%,1);
+            border-bottom: 1px solid #d0d7de;
             padding-bottom: 8px;
         }
         p {
@@ -47,71 +48,80 @@
             font-size: 14px;
             margin-bottom: 6px;
         }
-        input[type="number"] {
+        input {
             width: 100%;
             padding: 6px 12px;
             font-size: 14px;
-            line-height: 20px;
-            color: #24292f;
-            background-color: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
             box-sizing: border-box;
-            box-shadow: inset 0 1px 0 rgba(208,215,222,0.2);
+            background-color: #f6f8fa;
         }
-        input[type="number"]:focus {
+        input:focus {
             border-color: #0969da;
+            background-color: #ffffff;
             outline: none;
             box-shadow: 0 0 0 3px rgba(9,105,218,0.3);
         }
         button {
             width: 100%;
-            padding: 6px 16px;
+            padding: 8px 16px;
             font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
+            font-weight: 600;
             color: #ffffff;
-            background-color: #1f883d;
-            border: 1px solid rgba(31,136,61,0.15);
+            background-color: #2da44e;
+            border: 1px solid rgba(27,31,36,0.15);
             border-radius: 6px;
             cursor: pointer;
-            text-align: center;
-            transition: background-color 0.2s;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: #1a7f37;
-        }
-        .result-box {
-            margin-top: 20px;
-            padding: 16px;
-            background-color: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            display: none;
-        }
-        .result-box.active {
-            display: block;
-        }
-        .result-title {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-        .result-value {
-            font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Liberation Mono, Menlo, Monaco, Consolas, monospace;
-            font-size: 16px;
-            background: #ffffff;
-            padding: 8px;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            color: #0969da;
-            font-weight: bold;
+            background-color: #2c974b;
         }
         .error {
             color: #cf222e;
+            background-color: #ffebe9;
+            padding: 12px;
+            border-radius: 6px;
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 16px;
             display: none;
+            border: 1px solid rgba(207,34,46,0.15);
+        }
+        .results-box {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #d0d7de;
+            display: none;
+        }
+        .result-item {
+            margin-bottom: 14px;
+        }
+        .code-container {
+            display: flex;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 8px 12px;
+            align-items: center;
+            justify-content: space-between;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            font-size: 13px;
+        }
+        .copy-btn {
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            color: #24292f;
+            padding: 3px 8px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: auto;
+            margin: 0;
+        }
+        .copy-btn:hover {
+            background-color: #f3f4f6;
+            border-color: #8c959f;
         }
     </style>
 </head>
@@ -119,77 +129,108 @@
 
 <div class="container">
     <h1>XY Skew Factor Rechner</h1>
-    <p>Geben Sie Ihre Messwerte in mm ein, um den <code>XY_SKEW_FACTOR</code> für Ihre Firmware zu berechnen.</p>
-    
+    <p>Geben Sie Ihre Messwerte in mm ein, um den Korrekturfaktor für Ihren Drucker zu ermitteln.</p>
+
     <div class="input-group">
         <label for="ac">Diagonale A nach C (AC)</label>
-        <input type="number" id="ac" step="any" placeholder="z.B. 141.42">
+        <input type="number" id="ac" step="0.001" placeholder="z.B. 141.42">
     </div>
-    
+
     <div class="input-group">
         <label for="bd">Diagonale B nach D (BD)</label>
-        <input type="number" id="bd" step="any" placeholder="z.B. 141.42">
+        <input type="number" id="bd" step="0.001" placeholder="z.B. 141.42">
     </div>
-    
+
     <div class="input-group">
         <label for="ad">Unterkante A nach D (AD)</label>
-        <input type="number" id="ad" step="any" placeholder="z.B. 100.00">
+        <input type="number" id="ad" step="0.001" placeholder="z.B. 100.00">
     </div>
-    
-    <button onclick="calculateSkew()">Faktor berechnen</button>
-    <div id="error-msg" class="error">Bitte überprüfen Sie Ihre Werte. Die mathematische Berechnung schlägt fehl (unmögliche Geometrie).</div>
 
-    <div class="result-box" id="result-container">
-        <div class="result-title">Berechneter XY_SKEW_FACTOR:</div>
-        <div class="result-value" id="result-val">0.000000</div>
+    <button onclick="calculateSkew()">Faktor berechnen</button>
+
+    <div id="errorMessage" class="error">
+        Bitte überprüfen Sie Ihre Werte. Die mathematische Berechnung schlägt fehl (unmögliche Geometrie).
+    </div>
+
+    <div id="results" class="results-box">
+        <div class="result-item">
+            <label>Berechneter XY_SKEW_FACTOR:</label>
+            <div class="code-container">
+                <span id="factorOutput">0.000000</span>
+                <button class="copy-btn" onclick="copyText('factorOutput')">Kopieren</button>
+            </div>
+        </div>
+
+        <div class="result-item">
+            <label>Fertiger G-Code-Befehl:</label>
+            <div class="code-container">
+                <span id="gcodeOutput">M852 I0.000000</span>
+                <button class="copy-btn" onclick="copyText('gcodeOutput')">Kopieren</button>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-function calculateSkew() {
-    const ac = parseFloat(document.getElementById('ac').value);
-    const bd = parseFloat(document.getElementById('bd').value);
-    const ad = parseFloat(document.getElementById('ad').value);
-    const errorMsg = document.getElementById('error-msg');
-    const resultContainer = document.getElementById('result-container');
-    const resultVal = document.getElementById('result-val');
+    function calculateSkew() {
+        const ac = parseFloat(document.getElementById('ac').value);
+        const bd = parseFloat(document.getElementById('bd').value);
+        const ad = parseFloat(document.getElementById('ad').value);
+        
+        const errorEl = document.getElementById('errorMessage');
+        const resultsEl = document.getElementById('results');
 
-    errorMsg.style.display = 'none';
-    resultContainer.classList.remove('active');
+        if (isNaN(ac) || isNaN(bd) || isNaN(ad) || ac <= 0 || bd <= 0 || ad <= 0) {
+            errorEl.style.display = 'block';
+            resultsEl.style.display = 'none';
+            return;
+        }
 
-    if (isNaN(ac) || isNaN(bd) || isNaN(ad) || ac <= 0 || bd <= 0 || ad <= 0) {
-        errorMsg.textContent = "Bitte füllen Sie alle Felder mit gültigen Zahlen aus.";
-        errorMsg.style.display = 'block';
-        return;
-    }
+        // Marlin Formeln
+        const ab_sq = (2 * ac * ac + 2 * bd * bd - 4 * ad * ad) / 4;
+        if (ab_sq <= 0) {
+            errorEl.style.display = 'block';
+            resultsEl.style.display = 'none';
+            return;
+        }
+        const ab = Math.sqrt(ab_sq);
 
-    try {
-        // Formel 1: AB berechnen
-        // AB = SQRT(2*AC*AC + 2*BD*BD - 4*AD*AD) / 2
-        const ab_squared = (2 * ac * ac + 2 * bd * bd - 4 * ad * ad) / 4;
-        if (ab_squared <= 0) throw new Error();
-        const ab = Math.sqrt(ab_squared);
-
-        // Formel 2: Winkel-Kosinus berechnen (Kosinussatz für das Dreieck)
-        // cos_A = (AC*AC - AB*AB - AD*AD) / (2 * AB * AD)
         const cos_A = (ac * ac - ab * ab - ad * ad) / (2 * ab * ad);
-        if (cos_A < -1 || cos_A > 1) throw new Error();
+        if (cos_A < -1 || cos_A > 1) {
+            errorEl.style.display = 'block';
+            resultsEl.style.display = 'none';
+            return;
+        }
 
-        // Winkel in Bogenmaß (Radiant)
-        const angle_A = Math.acos(cos_A);
+        const skew_factor = Math.tan((Math.PI / 2) - Math.acos(cos_A));
 
-        // Formel 3: TAN(PI/2 - angle_A)
-        const skew_factor = Math.tan((Math.PI / 2) - angle_A);
+        if (isNaN(skew_factor) || !isFinite(skew_factor)) {
+            errorEl.style.display = 'block';
+            resultsEl.style.display = 'none';
+            return;
+        }
 
-        if (isNaN(skew_factor) || !isFinite(skew_factor)) throw new Error();
-
-        resultVal.textContent = skew_factor.toFixed(6);
-        resultContainer.classList.add('active');
-    } catch (e) {
-        errorMsg.textContent = "Mathematischer Fehler: Diese Werte ergeben kein echtes Parallelogramm.";
-        errorMsg.style.display = 'block';
+        errorEl.style.display = 'none';
+        
+        // Werte runden und anzeigen (6 Dezimalstellen wie Marlin Standard)
+        const formattedFactor = skew_factor.toFixed(6);
+        document.getElementById('factorOutput').innerText = formattedFactor;
+        document.getElementById('gcodeOutput').innerText = `M852 I${formattedFactor}`;
+        
+        resultsEl.style.display = 'block';
     }
-}
+
+    function copyText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = 'Kopiert!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 1500);
+        });
+    }
 </script>
 
 </body>

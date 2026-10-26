@@ -55,7 +55,7 @@ PID-Werte für Hotend und Heizbett können direkt per G-Code oder im LCD-Menü n
 <br>
 
 ### ✅ SKEW_CORRECTION (Rechtwinkligkeits-Korrektur) aktiviert
-Korrektur X- und Y-Achse um einem perfekten 90°-Winkel zu ereichen.
+Diese Funktion korrigiert geometrische Fehlstellungen (Schieflagen) zwischen den XY-Achsen Ihres 3D-Druckers. Wenn Ihre Achsen nicht perfekt im 90°-Winkel zueinander stehen, gleicht diese Software-Funktion das aus, damit Ihre Drucke trotzdem rechtwinklig werden.
 
 <br>
 

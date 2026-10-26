@@ -188,7 +188,7 @@ XY_SKEW_FACTOR : TAN( PI / 2 - ACOS (( AC * AC - AB * AB - AD * AD ) / (2 * AB *
 
 Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Online-Rechner:
 
-👉 **Zum interaktiven** [Skew-Faktor-Rechner](https://carandmore.github.io/Ender-3-Pro/index.html).
+👉 **Zum interaktiven** [Skew-Faktor-Rechner](https://carandmore.github.io/Ender-3-Pro/xy_calc.html).
 ### Kurzanleitung:
 1. Drucke ein Testquadrat und miss die Diagonalen (**AC** und **BD**) sowie die Unterkante (**AD**).
 2. Trage die Werte in den Rechner ein und klicke auf **Faktor berechnen**.

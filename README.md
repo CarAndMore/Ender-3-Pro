@@ -1,5 +1,8 @@
 # Marlin 2.0.9.1 – Custom Firmware für den Creality Ender 3 Pro 
 
+***
+*Hinweis: Diese Informationstexte wurden mit Hilfe einer künstlichen Intelligenz (KI) erstellt.*
+***
  🇩🇪 **Dies ist die deutsche Dokumentation.** 
  
  🇬🇧 👉 For the English version, please view the [README_EN.md](.github/README_EN.md).
@@ -286,3 +289,7 @@ Vor dem ersten Homing sollten folgende Punkte überprüft werden:
 - Z-Offset
 
 Für Schäden an Hardware, Druckobjekten oder Folgeschäden wird keine Haftung übernommen.
+
+***
+
+*Hinweis: Diese Informationstexte wurden mit Hilfe einer künstlichen Intelligenz (KI) erstellt.*

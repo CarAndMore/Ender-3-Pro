@@ -214,20 +214,30 @@ Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Onli
 Wer keinen fertigen Sensor kaufen möchte, kann einen mechanischen Standard-Mikroschalter (Typ **V-156-1C25** mit Rolle) als zuverlässigen Filamentsensor nutzen.
 
 ### 1. Pinbelegung am Schalter
-Der Mikroschalter besitzt drei Anschlüsse. Für diese Firmware-Konfiguration nutzen wir den Schalter als **Normally Open (NO)**. Das bedeutet: Läuft Filament durch den Sensor, ist der Schalter gedrückt (Stromkreis offen). Sobald das Filament zu Ende ist, springt der Schalter in seine Ruhelage zurück – der Stromkreis wird **geschlossen** und löst den Filamentwechsel aus.
+Der Mikroschalter besitzt drei Anschlüsse. Für diese Firmware-Konfiguration nutzen wir den Schalter als **Normally Closed (NC)**. Das bedeutet: Läuft Filament durch den Sensor, ist der Schalter gedrückt (Stromkreis offen). Sobald das Filament zu Ende ist, springt der Schalter in seine Ruhelage zurück – der Stromkreis wird **geschlossen** und löst den Filamentwechsel aus.
+
+Die Farben Dinner der Orientierung und sind nicht verbindlich!
 
 * **Blaues Kabel:** Wird an den Pin **COM** (Common / Masse) am Schalter gelötet.
-* **Grünes Kabel:** Wird an den Pin **NO** (Normally Open / Normal offen) am Schalter gelötet.
-* Der äußere Pin (**NC** / Normally Closed) bleibt **unbelegt**.
+* **Grünes Kabel:** Wird an den Pin **NC** (Normally Closed) am Schalter gelötet.
+* Der äußere Pin (**NO** / Normally Open) bleibt **unbelegt**.
 
 ![Runout Schaltschema](.github/img/Runout_Schemata.png)
 
 ### 2. Anschluss am Mainboard
 Am Creality v4.2.2 Mainboard wird das Kabel an den dreipoligen Stecker für den Filamentsensor (neben den X-Endstopp-Pins) angeschlossen:
 
-* 🔌 **SIGNAL:** Verbinden mit dem **grünen Kabel** (vom NO-Pin des Schalters).
-* 🔌 **GND:** Verbinden mit dem **blauen Kabel** (vom COM-Pin des Schalters).
-* ⚠️ **+3.3 V:** Bleibt **unbelegt**! Da es sich um einen rein mechanischen Schalter handelt, wird keine Spannungsversorgung benötigt. Ein falsches Anschließen der Spannungsleitung kann zu einem Kurzschluss auf dem Mainboard führen.
+* **SIGNAL:** Verbinden mit dem **grünen Kabel** (vom NC-Pin des Schalters).
+* **GND:** Verbinden mit dem **blauen Kabel** (vom COM-Pin des Schalters).
+* **+3.3 V:** Bleibt **unbelegt**! Da es sich um einen rein mechanischen Schalter handelt, wird keine Spannungsversorgung benötigt. Ein falsches Anschließen der Spannungsleitung kann zu einem Kurzschluss auf dem Mainboard führen.
+
+⚠️ **WICHTIGER SICHERHEITSHINWEIS & HAFTUNGSAUSSCHLUSS:**
+Da Creality bei verschiedenen Revisionen des v4.2.2 Mainboards gelegentlich die Pinbelegung ändert, **übernehme ich keine Haftung für eventuelle Hardware-Schäden!** Bitte überprüfe das Pinout vor dem Anschließen unbedingt selbst mit einem Multimeter (Durchgangsprüfung/Widerstandsmessung bei ausgeschaltetem Drucker):
+
+* Miss dazu von den Pins der JST-Buchse des Sensors zum **AMS1117 3.3V Spannungsregler** auf dem Board durch:
+  * Pin 1 des Reglers ➡️ muss Verbindung zu **GND** an der Buchse haben.
+  * Pin 2 (Mitte / Tab) des Reglers ➡️ muss Verbindung zu **3.3 V** an der Buchse haben.
+* Vergewissere dich so, welcher Pin wirklich das Signal-Kabel aufnehmen muss, um einen Kurzschluss zu vermeiden.
 
 <img src=".github/img/runout_con-Pinout.jpg" width="34%" alt="Mainboard Pinbelegung" />
 
@@ -237,13 +247,6 @@ Nach dem Anschließen und dem Flashen der Runout-Firmware kannst du die Funktion
 1. **Mit Filament:** (Schalter gedrückt) `M119` senden ➡️ Status muss `TRIGGERED`  anzeigen.
 2. **Ohne Filament:** (Schalter springt zurück / geschlossen) `M119` senden ➡️ Status muss auf `open` wechseln.
 
-⚠️ **WICHTIGER SICHERHEITSHINWEIS & HAFTUNGSAUSSCHLUSS:**
-Da Creality bei verschiedenen Revisionen des v4.2.2 Mainboards gelegentlich die Pinbelegung ändert, **übernehme ich keine Haftung für eventuelle Hardware-Schäden!** Bitte überprüfe das Pinout vor dem Anschließen unbedingt selbst mit einem Multimeter (Durchgangsprüfung/Widerstandsmessung bei ausgeschaltetem Drucker):
-
-* Miss dazu von den Pins der JST-Buchse des Sensors zum **AMS1117 3.3V Spannungsregler** auf dem Board durch:
-  * Pin 1 des Reglers ➡️ muss Verbindung zu **GND** an der Buchse haben.
-  * Pin 2 (Mitte / Tab) des Reglers ➡️ muss Verbindung zu **3.3 V** an der Buchse haben.
-* Vergewissere dich so, welcher Pin wirklich das Signal-Kabel aufnehmen muss, um einen Kurzschluss zu vermeiden.
 ---
 
 ## 💡 Nützliche G-Code-Befehle

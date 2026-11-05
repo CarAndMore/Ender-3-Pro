@@ -26,6 +26,11 @@ Automatische Bettnivellierung (ABL) ist vollständig eingerichtet und einsatzber
 
 <br>
 
+### ✅ Filament-Runout-Sensor (Nur in der Runout-Firmware-Variante)
+Für die Variante mit Filament-Erkennung ist ein mechanischer Sensor erforderlich. Er erkennt zuverlässig das Ende des Filaments. Nach dem Auslösen druckt der Drucker noch **350 mm** weiter (dieser Wert kann direkt im LCD-Menü angepasst werden), um das verbleibende Filament optimal auszunutzen. Im Anschluss wird automatisch eine Druckpause und der Filamentwechsel-Assistent eingeleitet.
+
+<br>
+
 ### ✅ Bett-Schrauben-Assistent aktiviert
 Der **ASSISTED_TRAMMING_WIZARD** unterstützt das manuelle Ausrichten des Druckbetts. In Verbindung mit dem BLTouch werden die Positionen über den Bettschrauben automatisch angefahren und vermessen. Der Assistent zeigt anschließend die notwendigen Korrekturen zum exakten Trammen des Druckbetts an.
 
@@ -96,6 +101,7 @@ Vorkonfigurierte Temperaturen:
 - **Sensor:** Creality CR-Touch oder BLTouch
 - **Extruder:** BMG Dual-Drive Extruder (oder kompatibler Klon)
 
+- **Filament-Runout-Sensor:** (Nur für die Runout-Firmware-Variante erforderlich)
 ---
 
 ## 📦 Meine OctoPrint – Plugin-Liste
@@ -212,6 +218,7 @@ Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Onli
 | Auto Home | `G28` | `G28` | Fährt alle Achsen (X, Y, Z) an ihre Endstopps und setzt die aktuelle Position als Referenz. |
 | Automatische Bettnivellierung (ABL) | `G29` | `G29` | Startet das automatische Bed-Leveling mittels BLTouch/CR-Touch. |
 | Bett-Schrauben-Assistent (Bed Tramming) | `G35` | `G35` | Vermisst die Positionen über den Bettschrauben und zeigt an, welche Schraube wie weit gedreht werden muss. |
+| Sensor-Status abfragen | M119 | M119 | Fragt den aktuellen Zustand aller Endstopps und des Filament-Sensors ab (gibt "open" oder "TRIGGERED" zurück). |
 | Düsentemperatur setzen | `M104` | `M104 S200` | Heizt die Düse auf 200 °C, ohne auf das Erreichen der Temperatur zu warten. |
 | Düsentemperatur setzen und warten | `M109` | `M109 S200` | Heizt die Düse auf 200 °C und wartet, bis die Zieltemperatur erreicht ist. |
 | Betttemperatur setzen | `M140` | `M140 S60` | Heizt das Druckbett auf 60 °C, ohne zu warten. |
@@ -266,6 +273,11 @@ Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Onli
 | Vorheizprofil ABS | Durch PETG ersetzt |
 | Vorheizprofil PLA | 195 °C / 60 °C |
 | Vorheizprofil PETG | 220 °C / 75 °C |
+| | | 
+| **Nur in der Runout-Firmware** | | 
+| **Einstellung** | **Wert** |
+| Filament-Runout-Sensor | Aktivirt |
+| Nachlaufdistanz | 350 mm |
 
 ---
 

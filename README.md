@@ -209,9 +209,9 @@ Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Onli
    ```
    
 <p>
-  <img src=".github/img/IMG_1_AC.jpg" width="25%" alt="AD" />
-  <img src=".github/img/IMG_2_BD.jpg" width="25%" alt="AD" />
-  <img src=".github/img/IMG_3_AD.jpg" width="25%" alt="AD" />
+  <img src=".github/img/IMG_1_AC.jpg" width="25%" alt="AC" />
+  <img src=".github/img/IMG_2_BD.jpg" width="25%" alt="BD" />
+  <img src=".github/img/IMG_3_BD.jpg" width="25%" alt="AD" />
 </p>
 
 ---

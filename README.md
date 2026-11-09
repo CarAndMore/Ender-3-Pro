@@ -207,6 +207,13 @@ Da die Formel etwas unhandlich ist, gibt es dafür jetzt einen interaktiven Onli
    M852 I[DEIN_BERECHNETER_WERT] ; z.b. M852 I0.000165
    M500 ; Einstellungen dauerhaft im EEPROM speichern
    ```
+   
+<p>
+  <img src=".github/img/IMG_1_AC.jpg" width="25%" alt="AD" />
+  <img src=".github/img/IMG_2_BD.jpg" width="25%" alt="AD" />
+  <img src=".github/img/IMG_3_AD.jpg" width="25%" alt="AD" />
+</p>
+
 ---
 
 ## 🔧 DIY-Anleitung: Filament-Runout-Sensor (V-156-1C25) verkabeln
